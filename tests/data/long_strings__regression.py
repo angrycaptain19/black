@@ -107,17 +107,16 @@ func_call_where_string_arg_has_old_fmt_and_bad_parens(
 
 class A:
     def append(self):
-        if True:
-            xxxx.xxxxxxx.xxxxx( ('xxxxxxxxxx xxxx xx xxxxxx(%x) xx %x xxxx xx xxx %x.xx'
-                                 % (len(self) + 1,
-                                    xxxx.xxxxxxxxxx,
-                                    xxxx.xxxxxxxxxx))
-                                + (' %.3f (%s) to %.3f (%s).\n'
-                                   % (xxxx.xxxxxxxxx,
-                                      xxxx.xxxxxxxxxxxxxx(xxxx.xxxxxxxxx),
-                                      x,
-                                      xxxx.xxxxxxxxxxxxxx( xx)
-                                      )))
+        xxxx.xxxxxxx.xxxxx( ('xxxxxxxxxx xxxx xx xxxxxx(%x) xx %x xxxx xx xxx %x.xx'
+                             % (len(self) + 1,
+                                xxxx.xxxxxxxxxx,
+                                xxxx.xxxxxxxxxx))
+                            + (' %.3f (%s) to %.3f (%s).\n'
+                               % (xxxx.xxxxxxxxx,
+                                  xxxx.xxxxxxxxxxxxxx(xxxx.xxxxxxxxx),
+                                  x,
+                                  xxxx.xxxxxxxxxxxxxx( xx)
+                                  )))
 
 class A:
     def foo():
@@ -154,9 +153,8 @@ xxx_xx_xxxx_xxxx,xxx_xxx_xxxx,xxx_xxx_xxxx xxxx=xxx | xxxxxx -x xxxxxxxx -x xxxx
 
 class A:
     def foo(self):
-        if True:
-            xxxxx_xxxxxxxxxxxx('xxx xxxxxx xxx xxxxxxxxx.xx xx xxxxxxxx.  xxx xxxxxxxxxxxxx.xx xxxxxxx '
-                               + 'xx xxxxxx xxxxxx xxxxxx xx xxxxxxx xxx xxx ${0} xx x xxxxxxxx xxxxx'.xxxxxx(xxxxxx_xxxxxx_xxx))
+        xxxxx_xxxxxxxxxxxx('xxx xxxxxx xxx xxxxxxxxx.xx xx xxxxxxxx.  xxx xxxxxxxxxxxxx.xx xxxxxxx '
+                           + 'xx xxxxxx xxxxxx xxxxxx xx xxxxxxx xxx xxx ${0} xx x xxxxxxxx xxxxx'.xxxxxx(xxxxxx_xxxxxx_xxx))
 
 class A:
     class B:
@@ -532,18 +530,17 @@ func_call_where_string_arg_has_old_fmt_and_bad_parens(
 
 class A:
     def append(self):
-        if True:
-            xxxx.xxxxxxx.xxxxx(
-                "xxxxxxxxxx xxxx xx xxxxxx(%x) xx %x xxxx xx xxx %x.xx"
-                % (len(self) + 1, xxxx.xxxxxxxxxx, xxxx.xxxxxxxxxx)
-                + " %.3f (%s) to %.3f (%s).\n"
-                % (
-                    xxxx.xxxxxxxxx,
-                    xxxx.xxxxxxxxxxxxxx(xxxx.xxxxxxxxx),
-                    x,
-                    xxxx.xxxxxxxxxxxxxx(xx),
-                )
+        xxxx.xxxxxxx.xxxxx(
+            "xxxxxxxxxx xxxx xx xxxxxx(%x) xx %x xxxx xx xxx %x.xx"
+            % (len(self) + 1, xxxx.xxxxxxxxxx, xxxx.xxxxxxxxxx)
+            + " %.3f (%s) to %.3f (%s).\n"
+            % (
+                xxxx.xxxxxxxxx,
+                xxxx.xxxxxxxxxxxxxx(xxxx.xxxxxxxxx),
+                x,
+                xxxx.xxxxxxxxxxxxxx(xx),
             )
+        )
 
 
 class A:
@@ -585,13 +582,12 @@ xxxxxxx = {
 
 class A:
     def foo(self):
-        if True:
-            xxxxx_xxxxxxxxxxxx(
-                "xxx xxxxxx xxx xxxxxxxxx.xx xx xxxxxxxx.  xxx xxxxxxxxxxxxx.xx"
-                " xxxxxxx "
-                + "xx xxxxxx xxxxxx xxxxxx xx xxxxxxx xxx xxx ${0} xx x xxxxxxxx xxxxx"
-                .xxxxxx(xxxxxx_xxxxxx_xxx)
-            )
+        xxxxx_xxxxxxxxxxxx(
+            "xxx xxxxxx xxx xxxxxxxxx.xx xx xxxxxxxx.  xxx xxxxxxxxxxxxx.xx"
+            " xxxxxxx "
+            + "xx xxxxxx xxxxxx xxxxxx xx xxxxxxx xxx xxx ${0} xx x xxxxxxxx xxxxx"
+            .xxxxxx(xxxxxx_xxxxxx_xxx)
+        )
 
 
 class A:

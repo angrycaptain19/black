@@ -3,18 +3,13 @@
 
 # leading comment
 def f():
-    NO = ''
     SPACE = ' '
-    DOUBLESPACE = '  '
-
     t = leaf.type
     p = leaf.parent  # trailing comment
     v = leaf.value
 
-    if t in ALWAYS_NO_SPACE:
-        pass
     if t == token.COMMENT:  # another trailing comment
-        return DOUBLESPACE
+        return '  '
 
 
     assert p is not None, f"INTERNAL ERROR: hand-made leaf without parent: {leaf!r}"
@@ -23,6 +18,7 @@ def f():
     prev = leaf.prev_sibling
     if not prev:
         prevp = preceding_leaf(p)
+        NO = ''
         if not prevp or prevp.type in OPENING_BRACKETS:
 
 
@@ -100,24 +96,20 @@ def g():
 
 # leading comment
 def f():
-    NO = ""
     SPACE = " "
-    DOUBLESPACE = "  "
-
     t = leaf.type
     p = leaf.parent  # trailing comment
     v = leaf.value
 
-    if t in ALWAYS_NO_SPACE:
-        pass
     if t == token.COMMENT:  # another trailing comment
-        return DOUBLESPACE
+        return "  "
 
     assert p is not None, f"INTERNAL ERROR: hand-made leaf without parent: {leaf!r}"
 
     prev = leaf.prev_sibling
     if not prev:
         prevp = preceding_leaf(p)
+        NO = ""
         if not prevp or prevp.type in OPENING_BRACKETS:
 
             return NO

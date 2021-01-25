@@ -19,8 +19,7 @@ def class_under_the_func_with_blank_parentheses():
 class NormalClass (
 ):
     def func_for_testing(self, first, second):
-        sum = first + second
-        return sum
+        return first + second
 
 
 # output
@@ -54,5 +53,4 @@ def class_under_the_func_with_blank_parentheses():
 
 class NormalClass:
     def func_for_testing(self, first, second):
-        sum = first + second
-        return sum
+        return first + second

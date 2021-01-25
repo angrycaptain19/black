@@ -145,7 +145,7 @@ numpy[np.newaxis, :]
 (SomeName)
 SomeName
 (Good, Bad, Ugly)
-(i for i in (1, 2, 3))
+iter((1, 2, 3))
 ((i ** 2) for i in (1, 2, 3))
 ((i ** 2) for i, _ in ((1, 'a'), (2, 'b'), (3, 'c')))
 (((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3))
@@ -186,10 +186,10 @@ assert(not Test),("Short message")
 assert this is ComplexTest and not requirements.fit_in_a_single_line(force=False), "Short message"
 assert(((parens is TooMany)))
 for x, in (1,), (2,), (3,): ...
-for y in (): ...
-for z in (i for i in (1, 2, 3)): ...
+for _ in (): ...
+for _ in iter((1, 2, 3)): ...
 for i in (call()): ...
-for j in (1 + (2 + 3)): ...
+for _ in (1 + (2 + 3)): ...
 while(this and that): ...
 for addr_family, addr_type, addr_proto, addr_canonname, addr_sockaddr in socket.getaddrinfo('google.com', 'http'):
     pass
@@ -198,9 +198,9 @@ a = aaaa.bbbb.cccc.dddd.eeee.ffff.gggg.hhhh.iiii.jjjj.kkkk.llll.mmmm.nnnn.oooo.p
 a = aaaa.bbbb.cccc.dddd.eeee.ffff.gggg.hhhh.iiii.jjjj.kkkk.llll.mmmm.nnnn.oooo.pppp is qqqq.rrrr.ssss.tttt.uuuu.vvvv.xxxx.yyyy.zzzz
 a = aaaa.bbbb.cccc.dddd.eeee.ffff.gggg.hhhh.iiii.jjjj.kkkk.llll.mmmm.nnnn.oooo.pppp is not qqqq.rrrr.ssss.tttt.uuuu.vvvv.xxxx.yyyy.zzzz
 if (
-    threading.current_thread() != threading.main_thread() and
-    threading.current_thread() != threading.main_thread() or
-    signal.getsignal(signal.SIGINT) != signal.default_int_handler
+    threading.current_thread()
+    not in [threading.main_thread(), threading.main_thread()]
+    or signal.getsignal(signal.SIGINT) != signal.default_int_handler
 ):
     return True
 if (
@@ -435,7 +435,7 @@ numpy[np.newaxis, :]
 (SomeName)
 SomeName
 (Good, Bad, Ugly)
-(i for i in (1, 2, 3))
+iter((1, 2, 3))
 ((i ** 2) for i in (1, 2, 3))
 ((i ** 2) for i, _ in ((1, "a"), (2, "b"), (3, "c")))
 (((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3))
@@ -511,13 +511,13 @@ assert this is ComplexTest and not requirements.fit_in_a_single_line(
 assert parens is TooMany
 for (x,) in (1,), (2,), (3,):
     ...
-for y in ():
+for _ in ():
     ...
-for z in (i for i in (1, 2, 3)):
+for _ in iter((1, 2, 3)):
     ...
-for i in call():
+for _ in call():
     ...
-for j in 1 + (2 + 3):
+for _ in 1 + (2 + 3):
     ...
 while this and that:
     ...
@@ -546,8 +546,8 @@ a = (
     is not qqqq.rrrr.ssss.tttt.uuuu.vvvv.xxxx.yyyy.zzzz
 )
 if (
-    threading.current_thread() != threading.main_thread()
-    and threading.current_thread() != threading.main_thread()
+    threading.current_thread()
+    not in [threading.main_thread(), threading.main_thread()]
     or signal.getsignal(signal.SIGINT) != signal.default_int_handler
 ):
     return True

@@ -131,12 +131,8 @@ short
         if element is not None
     ]
     while True:
-        if False:
-            continue
-
+        pass
             # and round and round we go
-        # and round and round we go
-
    # let's return
     return Node(
         syms.simple_stmt,
@@ -303,11 +299,8 @@ short
         if element is not None
     ]
     while True:
-        if False:
-            continue
-
+        pass
             # and round and round we go
-        # and round and round we go
 
     # let's return
     return Node(
