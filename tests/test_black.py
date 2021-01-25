@@ -946,12 +946,12 @@ class BlackTestCase(BlackBaseTestCase):
         )
 
     def test_format_file_contents(self) -> None:
-        empty = ""
         mode = DEFAULT_MODE
         with self.assertRaises(black.NothingChanged):
+            empty = ""
             black.format_file_contents(empty, mode=mode, fast=False)
-        just_nl = "\n"
         with self.assertRaises(black.NothingChanged):
+            just_nl = "\n"
             black.format_file_contents(just_nl, mode=mode, fast=False)
         same = "j = [1, 2, 3]\n"
         with self.assertRaises(black.NothingChanged):
@@ -960,8 +960,8 @@ class BlackTestCase(BlackBaseTestCase):
         expected = same
         actual = black.format_file_contents(different, mode=mode, fast=False)
         self.assertEqual(expected, actual)
-        invalid = "return if you can"
         with self.assertRaises(black.InvalidInput) as e:
+            invalid = "return if you can"
             black.format_file_contents(invalid, mode=mode, fast=False)
         self.assertEqual(str(e.exception), "Cannot parse: 1:7: return if you can")
 
@@ -1006,11 +1006,11 @@ class BlackTestCase(BlackBaseTestCase):
             self.assertIn(src, cache)
 
     def test_cache_single_file_already_cached(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace:
             src = (workspace / "test.py").resolve()
             with src.open("w") as fobj:
                 fobj.write("print('hello')")
+            mode = DEFAULT_MODE
             black.write_cache({}, [src], mode)
             self.invokeBlack([str(src)])
             with src.open("r") as fobj:
@@ -1018,16 +1018,16 @@ class BlackTestCase(BlackBaseTestCase):
 
     @event_loop()
     def test_cache_multiple_files(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace, patch(
-            "black.ProcessPoolExecutor", new=ThreadPoolExecutor
-        ):
+                "black.ProcessPoolExecutor", new=ThreadPoolExecutor
+            ):
             one = (workspace / "one.py").resolve()
             with one.open("w") as fobj:
                 fobj.write("print('hello')")
             two = (workspace / "two.py").resolve()
             with two.open("w") as fobj:
                 fobj.write("print('hello')")
+            mode = DEFAULT_MODE
             black.write_cache({}, [one], mode)
             self.invokeBlack([str(workspace)])
             with one.open("r") as fobj:
@@ -1039,30 +1039,30 @@ class BlackTestCase(BlackBaseTestCase):
             self.assertIn(two, cache)
 
     def test_no_cache_when_writeback_diff(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace:
             src = (workspace / "test.py").resolve()
             with src.open("w") as fobj:
                 fobj.write("print('hello')")
             with patch("black.read_cache") as read_cache, patch(
-                "black.write_cache"
-            ) as write_cache:
+                        "black.write_cache"
+                    ) as write_cache:
                 self.invokeBlack([str(src), "--diff"])
+                mode = DEFAULT_MODE
                 cache_file = black.get_cache_file(mode)
                 self.assertFalse(cache_file.exists())
                 write_cache.assert_not_called()
                 read_cache.assert_not_called()
 
     def test_no_cache_when_writeback_color_diff(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace:
             src = (workspace / "test.py").resolve()
             with src.open("w") as fobj:
                 fobj.write("print('hello')")
             with patch("black.read_cache") as read_cache, patch(
-                "black.write_cache"
-            ) as write_cache:
+                        "black.write_cache"
+                    ) as write_cache:
                 self.invokeBlack([str(src), "--diff", "--color"])
+                mode = DEFAULT_MODE
                 cache_file = black.get_cache_file(mode)
                 self.assertFalse(cache_file.exists())
                 write_cache.assert_not_called()
@@ -1071,7 +1071,7 @@ class BlackTestCase(BlackBaseTestCase):
     @event_loop()
     def test_output_locking_when_writeback_diff(self) -> None:
         with cache_dir() as workspace:
-            for tag in range(0, 4):
+            for tag in range(4):
                 src = (workspace / f"test{tag}.py").resolve()
                 with src.open("w") as fobj:
                     fobj.write("print('hello')")
@@ -1084,7 +1084,7 @@ class BlackTestCase(BlackBaseTestCase):
     @event_loop()
     def test_output_locking_when_writeback_color_diff(self) -> None:
         with cache_dir() as workspace:
-            for tag in range(0, 4):
+            for tag in range(4):
                 src = (workspace / f"test{tag}.py").resolve()
                 with src.open("w") as fobj:
                     fobj.write("print('hello')")
@@ -1095,25 +1095,25 @@ class BlackTestCase(BlackBaseTestCase):
                 mgr.assert_called()
 
     def test_no_cache_when_stdin(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir():
             result = CliRunner().invoke(
                 black.main, ["-"], input=BytesIO(b"print('hello')")
             )
             self.assertEqual(result.exit_code, 0)
+            mode = DEFAULT_MODE
             cache_file = black.get_cache_file(mode)
             self.assertFalse(cache_file.exists())
 
     def test_read_cache_no_cachefile(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir():
+            mode = DEFAULT_MODE
             self.assertEqual(black.read_cache(mode), {})
 
     def test_write_cache_read_cache(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace:
             src = (workspace / "test.py").resolve()
             src.touch()
+            mode = DEFAULT_MODE
             black.write_cache({}, [src], mode)
             cache = black.read_cache(mode)
             self.assertIn(src, cache)
@@ -1136,18 +1136,17 @@ class BlackTestCase(BlackBaseTestCase):
             self.assertEqual(done, {cached})
 
     def test_write_cache_creates_directory_if_needed(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir(exists=False) as workspace:
             self.assertFalse(workspace.exists())
+            mode = DEFAULT_MODE
             black.write_cache({}, [], mode)
             self.assertTrue(workspace.exists())
 
     @event_loop()
     def test_failed_formatting_does_not_get_cached(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir() as workspace, patch(
-            "black.ProcessPoolExecutor", new=ThreadPoolExecutor
-        ):
+                "black.ProcessPoolExecutor", new=ThreadPoolExecutor
+            ):
             failing = (workspace / "failing.py").resolve()
             with failing.open("w") as fobj:
                 fobj.write("not actually python")
@@ -1155,14 +1154,15 @@ class BlackTestCase(BlackBaseTestCase):
             with clean.open("w") as fobj:
                 fobj.write('print("hello")\n')
             self.invokeBlack([str(workspace)], exit_code=123)
+            mode = DEFAULT_MODE
             cache = black.read_cache(mode)
             self.assertNotIn(failing, cache)
             self.assertIn(clean, cache)
 
     def test_write_cache_write_fail(self) -> None:
-        mode = DEFAULT_MODE
         with cache_dir(), patch.object(Path, "open") as mock:
             mock.side_effect = OSError
+            mode = DEFAULT_MODE
             black.write_cache({}, [], mode)
 
     @event_loop()

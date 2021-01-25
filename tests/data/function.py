@@ -8,14 +8,10 @@ from library import some_connection, \
                     some_decorator
 f'trigger 3.6 mode'
 def func_no_args():
-  a; b; c
-  if True: raise RuntimeError
-  if False: ...
-  for i in range(10):
-    print(i)
-    continue
-  exec("new-style exec", {}, {})
-  return None
+  a
+  b
+  c
+  raise RuntimeError
 async def coroutine(arg, exec=False):
  "Single-line docstring. Multiline is harder to reformat."
  async with some_connection() as conn:
@@ -43,18 +39,17 @@ def example(session):
         models.Customer.id.asc()
     ).all()
 def long_lines():
-    if True:
-        typedargslist.extend(
-            gen_annotated_params(ast_args.kwonlyargs, ast_args.kw_defaults, parameters, implicit_default=True)
-        )
-        typedargslist.extend(
-            gen_annotated_params(
-                ast_args.kwonlyargs, ast_args.kw_defaults, parameters, implicit_default=True,
-                # trailing standalone comment
-            )
-        )
-    _type_comment_re = re.compile(
-        r"""
+  typedargslist.extend(
+      gen_annotated_params(ast_args.kwonlyargs, ast_args.kw_defaults, parameters, implicit_default=True)
+  )
+  typedargslist.extend(
+      gen_annotated_params(
+          ast_args.kwonlyargs, ast_args.kw_defaults, parameters, implicit_default=True,
+          # trailing standalone comment
+      )
+  )
+  _type_comment_re = re.compile(
+      r"""
         ^
         [\t ]*
         \#[ ]type:[ ]*
@@ -73,7 +68,7 @@ def long_lines():
         )
         $
         """, re.MULTILINE | re.VERBOSE
-    )
+  )
 def trailing_comma():
     mapping = {
     A: 0.25 * (10.0 / 12),
@@ -109,18 +104,10 @@ f"trigger 3.6 mode"
 
 
 def func_no_args():
-    a
-    b
-    c
-    if True:
-        raise RuntimeError
-    if False:
-        ...
-    for i in range(10):
-        print(i)
-        continue
-    exec("new-style exec", {}, {})
-    return None
+  a
+  b
+  c
+  raise RuntimeError
 
 
 async def coroutine(arg, exec=False):
@@ -179,26 +166,25 @@ def example(session):
 
 
 def long_lines():
-    if True:
-        typedargslist.extend(
-            gen_annotated_params(
-                ast_args.kwonlyargs,
-                ast_args.kw_defaults,
-                parameters,
-                implicit_default=True,
-            )
-        )
-        typedargslist.extend(
-            gen_annotated_params(
-                ast_args.kwonlyargs,
-                ast_args.kw_defaults,
-                parameters,
-                implicit_default=True,
-                # trailing standalone comment
-            )
-        )
-    _type_comment_re = re.compile(
-        r"""
+  typedargslist.extend(
+      gen_annotated_params(
+          ast_args.kwonlyargs,
+          ast_args.kw_defaults,
+          parameters,
+          implicit_default=True,
+      )
+  )
+  typedargslist.extend(
+      gen_annotated_params(
+          ast_args.kwonlyargs,
+          ast_args.kw_defaults,
+          parameters,
+          implicit_default=True,
+          # trailing standalone comment
+      )
+  )
+  _type_comment_re = re.compile(
+      r"""
         ^
         [\t ]*
         \#[ ]type:[ ]*
@@ -217,8 +203,8 @@ def long_lines():
         )
         $
         """,
-        re.MULTILINE | re.VERBOSE,
-    )
+      re.MULTILINE | re.VERBOSE,
+  )
 
 
 def trailing_comma():
